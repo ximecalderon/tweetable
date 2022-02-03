@@ -2,6 +2,7 @@ require "faker"
 
 puts "Crearing previous data..."
 
+Like.delete_all
 Tweet.delete_all
 User.delete_all
 
