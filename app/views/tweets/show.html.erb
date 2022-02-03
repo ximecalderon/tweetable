@@ -6,7 +6,11 @@
   <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %> |
   <%= link_to "Back to tweets", tweets_path %>
 
-  <%=button_to "Like", like_path(@tweet) , data: { turbo_method: :post }  %>
+  <% if @tweet.liked?(current_user) %>
+    <%= button_to "Like", like_destroy_path(@tweet), method: :delete %>
+  <% else %>
+    <%= button_to "Like", like_path(@tweet) %>
+  <% end %>
 
   <%= button_to "Destroy this tweet", @tweet, method: :delete %>
 </div>

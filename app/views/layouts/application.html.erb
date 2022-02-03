@@ -11,6 +11,20 @@
   </head>
 
   <body>
+
+    <header>
+      <ul>
+        <li>
+          <%= link_to "sign In", new_user_session_path  %>
+        </li>
+        <li>
+          <%= link_to "sign Up", new_user_registration_path  %>
+        </li>
+        <li>
+          <%= link_to "sign out", destroy_user_session_path, data: { turbo_method: :delete}  %>
+        </li>
+      </ul>
+    </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

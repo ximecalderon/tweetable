@@ -47,7 +47,6 @@ gem "net-http"
 gem "faker"
 gem "pundit"
 
-
 # Use Sass to process CSS
 # gem "sassc-rails"
 
