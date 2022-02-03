@@ -1,9 +1,13 @@
 require "faker"
 
-puts "Seeding users and tweets..."
+puts "Crearing previous data..."
 
 Tweet.delete_all
 User.delete_all
+
+puts "Database cleared."
+
+puts "Seeding users and tweets..."
 
 admin = User.create(email: "admin@mail.com",
                     username: "admin",
@@ -31,6 +35,7 @@ end
 puts "Seeding of #{User.all.size} users and #{Tweet.all.size} tweets completed."
 
 puts "Seeding replies..."
+
 Tweet.all.each do |tweet|
   users = User.all.to_a
   users.delete(tweet.user)
@@ -44,4 +49,13 @@ end
 puts "Seeding of replies completed."
 
 puts "Seeding likes..."
+
+User.all.each do |user|
+  liked_tweets = Tweet.all.sample(rand(3..8))
+
+  liked_tweets.each do |tweet|
+    Like.create(user_id: user.id, tweet_id: tweet.id)
+  end
+end
+
 puts "Seeding likes completed."
