@@ -8,5 +8,7 @@
 
 
   <%= button_to "Destroy this tweet", @tweet, method: :delete %>
-  <%= link_to "New tweet", new_tweet_path %>
+  <%= render "form", tweet: @new_tweet %>
 </div>
+
+<%= render @tweets %>

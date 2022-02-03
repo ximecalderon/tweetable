@@ -4,12 +4,14 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = Tweet.all.order(:created_at)
+    @tweets = Tweet.where(replied_to_id: nil).order(:created_at)
   end
 
   # GET /tweets/1
   def show
     @current_user = current_user
+    @tweets = Tweet.where(replied_to_id: @tweet.id).order(:created_at)
+    @new_tweet = Tweet.new
   end
 
   # GET /tweets/new
@@ -23,7 +25,7 @@ class TweetsController < ApplicationController
   # POST /tweets
   def create
     @tweet = Tweet.new(tweet_params)
-    @tweet.replied_to = params[:id]
+
     @tweet.user = current_user
     if @tweet.save
       redirect_to @tweet, notice: "Tweet was successfully created."
@@ -67,6 +69,6 @@ class TweetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def tweet_params
-    params.require(:tweet).permit(:body)
+    params.require(:tweet).permit(:body, :user_id, :replied_to_id)
   end
 end
