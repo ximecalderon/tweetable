@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[show edit update destroy like]
+  before_action :authenticate_user!
+  before_action :set_tweet, only: %i[show edit update destroy]
 
   # GET /tweets
   def index
@@ -8,6 +9,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   def show
+    @current_user = current_user
   end
 
   # GET /tweets/new
@@ -16,8 +18,7 @@ class TweetsController < ApplicationController
   end
 
   # GET /tweets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tweets
   def create
@@ -46,20 +47,27 @@ class TweetsController < ApplicationController
   end
 
   def like
-    like.create(user: current_user, tweet: @tweet)
+    @tweet = Tweet.find(params[:id])
+    Like.create(user: current_user, tweet: @tweet)
     redirect_to tweet_path(@tweet)
   end
-  
+
+  def like_destroy
+    @tweet = Tweet.find(params[:id])
+    @like = Like.find_by(user: current_user, tweet: @tweet)
+    @like.destroy
+    redirect_to tweet_path(@tweet)
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:body, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
 
-
+  # Only allow a list of trusted parameters through.
+  def tweet_params
+    params.require(:tweet).permit(:body, :user_id)
+  end
 end

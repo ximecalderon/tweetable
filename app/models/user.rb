@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Associations
-  has_many :tweets
-  has_many :likes
+  has_many :tweets, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   has_one_attached :avatar
 end
