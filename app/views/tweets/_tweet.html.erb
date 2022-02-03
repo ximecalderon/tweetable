@@ -10,8 +10,13 @@
   </p>
 
   <p>
-    <strong>Replies</strong>
+    <strong>Replies: </strong>
     <%= tweet.replies_count %>
+  </p>
+
+  <p>
+    <strong>Replied_to: </strong>
+    <%= tweet.replied_to_id %>
   </p>
 
   <% if tweet.liked?(current_user) %>
