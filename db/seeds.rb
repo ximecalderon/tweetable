@@ -12,7 +12,7 @@ puts "Seeding users and tweets..."
 admin = User.create(email: "admin@mail.com",
                     username: "admin",
                     name:"Admin the Great",
-                    password: "letmein",
+                    password: "supersecret",
                     role: 1)
 
 team = [["ximecalderon", "Ximena Calderón"],
