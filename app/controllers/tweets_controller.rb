@@ -1,15 +1,17 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tweet, only: %i[show edit update destroy]
+  before_action :set_tweet, only: %i[show edit update destroy like like_destroy]
 
   # GET /tweets
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.where(replied_to_id: nil).order(:created_at)
   end
 
   # GET /tweets/1
   def show
     @current_user = current_user
+    @tweets = Tweet.where(replied_to_id: @tweet.id).order(:created_at)
+    @new_tweet = Tweet.new
   end
 
   # GET /tweets/new
@@ -24,6 +26,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
 
+    @tweet.user = current_user
     if @tweet.save
       redirect_to @tweet, notice: "Tweet was successfully created."
     else
@@ -47,16 +50,14 @@ class TweetsController < ApplicationController
   end
 
   def like
-    @tweet = Tweet.find(params[:id])
     Like.create(user: current_user, tweet: @tweet)
-    redirect_to tweet_path(@tweet)
+    redirect_to request.referer
   end
 
   def like_destroy
-    @tweet = Tweet.find(params[:id])
     @like = Like.find_by(user: current_user, tweet: @tweet)
     @like.destroy
-    redirect_to tweet_path(@tweet)
+    redirect_to request.referer
   end
 
   private
@@ -68,6 +69,6 @@ class TweetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def tweet_params
-    params.require(:tweet).permit(:body, :user_id)
+    params.require(:tweet).permit(:body, :user_id, :replied_to_id)
   end
 end
