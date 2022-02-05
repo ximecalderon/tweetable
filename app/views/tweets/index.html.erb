@@ -1,14 +1,9 @@
 <h1 class="heading heading--sm text-center">Home</h1>
 
-<%= link_to "New tweet", new_tweet_path %>
+<% if user_signed_in? %>
+  <%= render "form", tweet: @tweet %>
+<% end%>
 
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
-  <% end %>
+<div class="section-sm">
+  <%= render @tweets %>
 </div>
-
-

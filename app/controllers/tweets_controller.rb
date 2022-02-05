@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index
     @tweets = Tweet.where(replied_to_id: nil).order(:created_at)
+    @tweet = Tweet.new
   end
 
   # GET /tweets/1

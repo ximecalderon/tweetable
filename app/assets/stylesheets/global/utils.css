@@ -60,6 +60,10 @@
   margin-bottom: 0.25rem;
 }
 
+.pl-4 {
+  padding-left: 0.25rem;
+}
+
 /* Flex & Grid */
 .flex {
   display: flex;
@@ -73,8 +77,12 @@
   flex-wrap: wrap;
 }
 
-.gap-2 {
-  gap: 0.5rem;
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-24 {
+  gap: 24px;
 }
 
 .gap-4 {

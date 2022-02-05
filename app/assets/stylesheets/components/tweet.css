@@ -1,0 +1,56 @@
+.container__tweet,
+.container__tweet-form {
+  background-color: white;
+  padding: 4px 8px;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.container__tweet-form {
+  align-items: flex-end;
+}
+
+.tweet__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.tweet__user {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.tweet__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tweet_avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+}
+
+.tweet__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet__input-container {
+  width: 100%;
+  border: none;
+  resize: vertical;
+}
+
+.tweet__input-container:focus {
+  outline: none;
+}
