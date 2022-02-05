@@ -1,31 +1,60 @@
-<h2>Sign up</h2>
-<div data-turbo="false">
+<div class="container" data-turbo="false">
+  <div class="text-center">
+    <h2 class="heading heading--sm">Create an account</h2>
+  </div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="login-card">
+    <p class="overline text-center">continue with</p>
+    <div class="social--buttons">
+      <%= button_to "GITHUB", "/", class: "button button--secondary" %> 
+      <%= button_to "TWITTER", "/", class: "button button--secondary" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
+    <p class="overline text-center mb-2">or</p>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
+    <div class="login-card__form">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> 
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="actions">
-      <%= f.submit "Sign up" %>
+      <div class="input mb-4">
+        <%= f.label :username, class:"content-xs overline"%>
+        <div class="input__container">
+          <%= f.text_field :username, class: "input__content",
+                                          placeholder: "example" %>
+        </div>
+      </div>
+
+      <div class="input mb-4">
+        <%= f.label :email, class:"content-xs overline"%>
+        <div class="input__container">
+          <%= f.email_field :email, class: "input__content", placeholder:
+          "example@mail.com" %>
+        </div>
+      </div>
+
+      <div class="input mb-4">
+        <%= f.label :password, class:"content-xs overline"%>
+        <div class="input__container">
+          <%= f.password_field :password, autocomplete: "new-password",
+          class: "input__content", placeholder: "********" %>
+        </div>
+      </div>
+
+      <div class="input mb-4">
+        <%= f.label :password_confirmation, class:"content-xs overline"%>
+        <div class="input__container">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",
+          class: "input__content", placeholder: "********" %>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <div class="actions mb-3"><%= f.submit "Sign up", class: "button button--primary full-width" %></div>
+        <p class="content-sm mb-3">Already a member?</p>
+        <%= link_to "Sign In", new_user_session_path, class: "content" %>
+      </div>
+
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
-
-<%= render "devise/shared/links" %>
