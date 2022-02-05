@@ -1,0 +1,27 @@
+.login-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  padding: 1.5rem 0;
+  margin: 16px;
+}
+
+.social--buttons {
+  margin: 1.2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.login-card__form {
+  padding: 0 16px;
+}
+
+.login-card__remember {
+  padding: 10px 0;
+}
