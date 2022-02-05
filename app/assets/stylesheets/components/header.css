@@ -14,7 +14,6 @@
 
 .navbar__menu-icon,
 .navbar__menu-icon-close {
-  height: 1.5em;
   display: none;
 }
 
@@ -43,37 +42,38 @@
 
 .navbar-links .link:hover {
   background-color: var(--primary-100);
+  border-radius: 8px;
 }
 
-@media screen and (max-width: 768px) {
-  .header {
-    padding: 1rem;
-  }
-  .navbar-links {
-    display: none;
-  }
+/* @media screen and (max-width: 768px) { */
+.header {
+  padding: 1rem;
+}
+.navbar-links {
+  display: none;
+}
 
-  .navbar__menu-icon {
-    display: block;
-  }
+.navbar__menu-icon {
+  display: block;
+}
 
-  .navbar--open .navbar__menu-icon {
-    display: none;
-  }
+.navbar--open .navbar__menu-icon {
+  display: none;
+}
 
-  .navbar--open .navbar__menu-icon-close {
-    display: block;
-  }
+.navbar--open .navbar__menu-icon-close {
+  display: block;
+}
 
-  .navbar--open .navbar-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 100%;
-    padding: 1rem;
-    background-color: white;
-  }
+.navbar--open .navbar-links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--gray-100);
+  border: 2px solid var(--gray-200);
 }

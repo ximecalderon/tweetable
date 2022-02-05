@@ -24,6 +24,9 @@
   color: var(--primary-500);
 }
 
+.secondary-500 {
+  color: var(--secondary-500);
+}
 .gray-200 {
   color: var(--gray-200);
 }
@@ -107,4 +110,10 @@
 /* Paddings */
 .p-0 {
   padding: 0;
+}
+
+/* Links */
+.link-filter:hover {
+  filter: invert(37%) sepia(62%) saturate(1345%) hue-rotate(305deg)
+    brightness(90%) contrast(83%);
 }
