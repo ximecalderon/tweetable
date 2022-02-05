@@ -4,13 +4,13 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = Tweet.where(replied_to_id: nil).order(:created_at)
+    @tweets = Tweet.where(replied_to_id: nil).order(created_at: :desc )
   end
 
   # GET /tweets/1
   def show
     @current_user = current_user
-    @tweets = Tweet.where(replied_to_id: @tweet.id).order(:created_at)
+    @tweets = Tweet.where(replied_to_id: @tweet.id).order(created_at: :desc)
     @new_tweet = Tweet.new
   end
 
@@ -28,7 +28,11 @@ class TweetsController < ApplicationController
 
     @tweet.user = current_user
     if @tweet.save
-      redirect_to @tweet, notice: "Tweet was successfully created."
+      if @tweet.replied_to_id
+        redirect_to @tweet.replied_to, notice: "Tweet was successfully created."
+      else
+        redirect_to root_path, notice: "Tweet was successfully created."
+      end
     else
       render :new, status: :unprocessable_entity
     end
