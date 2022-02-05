@@ -11,7 +11,7 @@
     <p class="overline text-center mb-2">or</p>
 
     <div class="login-card__form">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
 
       <div class="input mb-4">
         <%= f.label :email, class:"content-xs overline"%>
@@ -19,6 +19,7 @@
           <%= f.email_field :email, class: "input__content", placeholder:
           "example@mail.com" %>
         </div>
+        <%= errors_for(resource, :email) %>
       </div>
 
       <div class="input">
@@ -27,6 +28,7 @@
           <%= f.password_field :password, autocomplete: "current-password",
           class: "input__content", placeholder: "********" %>
         </div>
+        <%= errors_for(resource, :username) %>
       </div>
 
       <div class="login-card__remember">

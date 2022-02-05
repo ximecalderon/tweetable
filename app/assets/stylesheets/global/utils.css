@@ -81,6 +81,10 @@
   gap: 10px;
 }
 
+.gap-5 {
+  gap: 5px;
+}
+
 .gap-24 {
   gap: 24px;
 }

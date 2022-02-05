@@ -12,15 +12,14 @@
     <p class="overline text-center mb-2">or</p>
 
     <div class="login-card__form">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> 
-      <%= render "devise/shared/error_messages", resource: resource %>
-
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %> 
       <div class="input mb-4">
         <%= f.label :username, class:"content-xs overline"%>
         <div class="input__container">
           <%= f.text_field :username, class: "input__content",
                                           placeholder: "example" %>
         </div>
+        <%= errors_for(resource, :username) %>
       </div>
 
       <div class="input mb-4">
@@ -29,6 +28,25 @@
           <%= f.email_field :email, class: "input__content", placeholder:
           "example@mail.com" %>
         </div>
+        <%= errors_for(resource, :email) %>
+      </div>
+
+      <div class="input mb-4">
+        <%= f.label :name, class:"content-xs overline"%>
+        <div class="input__container">
+          <%= f.text_field :name, class: "input__content", placeholder:
+          "Example Name" %>
+        </div>
+        <%= errors_for(resource, :name) %>
+      </div>
+
+      <div class="input mb-4">
+        <%= f.label :avatar, "Avatar", class: "content-xs overline" %>
+        <div>
+          <%= image_tag(resource.avatar) if resource.avatar.attached? %>
+          <%= f.file_field :avatar, class: "input__content"%>
+        </div>
+        <%=errors_for(resource, :avatar)%>
       </div>
 
       <div class="input mb-4">
@@ -37,6 +55,7 @@
           <%= f.password_field :password, autocomplete: "new-password",
           class: "input__content", placeholder: "********" %>
         </div>
+        <%= errors_for(resource, :password) %>
       </div>
 
       <div class="input mb-4">
@@ -45,6 +64,7 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password",
           class: "input__content", placeholder: "********" %>
         </div>
+        <%= errors_for(resource, :password_confirmation) %>
       </div>
 
       <div class="text-center flex flex-column gap-4">
