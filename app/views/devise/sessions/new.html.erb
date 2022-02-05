@@ -6,8 +6,7 @@
   <div class="login-card">
     <p class="overline text-center">continue with</p>
     <div class="social--buttons">
-      <%= button_to "GITHUB", "/", class: "button button--secondary" %> 
-      <%= button_to "TWITTER", "/", class: "button button--secondary" %>
+      <%= link_to "GITHUB", "/", class: "button button--secondary full-width" %> 
     </div>
     <p class="overline text-center mb-2">or</p>
 
@@ -48,7 +47,7 @@
         <p class="content-sm mb-4">Don't have an account?</p>
 
         <%= link_to "Create an account", new_user_registration_path, class:
-        "content" %>
+        "content primary-500" %>
       </div>
       <% end %>
     </div>

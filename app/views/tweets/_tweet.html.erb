@@ -1,6 +1,6 @@
 <div id="<%= dom_id tweet %>" class="container__tweet">
   <div class="tweet__content">
-    <%= link_to "#" do%>
+    <%= link_to user_path(tweet.user) do%>
       <div class="tweet__header">
         <%= image_tag tweet.user.avatar, class: "tweet_avatar" %>
         <div class="tweet__user">
@@ -29,13 +29,13 @@
             <%= image_tag("icons/reply.svg") %>
             <%= tweet.replies_count %>
         <% end %>
-        <% if tweet.liked?(current_user) %>
-          <%= link_to like_destroy_path(tweet), method: :delete, class: "flex gap-10 link-filter" do %>
+        <% if user_signed_in? && tweet.liked?(current_user) %>
+          <%= button_to like_destroy_path(tweet), method: :delete, class: "button--no-bg flex gap-10 link-filter" do %>
             <%= image_tag("icons/like_true.svg") %>
             <%= tweet.likes_count %>
           <% end %>
         <% else %>
-          <%= link_to like_path(tweet), class: "flex gap-10 link-filter" do %>
+          <%= button_to like_path(tweet), class: "button--no-bg flex gap-10 link-filter" do %>
             <%= image_tag("icons/like.svg") %>
             <%= tweet.likes_count %>
           <% end %>

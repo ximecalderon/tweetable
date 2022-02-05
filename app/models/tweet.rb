@@ -11,6 +11,6 @@ class Tweet < ApplicationRecord
   # counter_cache: true
 
   def liked?(user)
-    !!self.likes.find { |like| like.user_id == user.id }
+    !!likes.find { |like| like.user_id == user.id }
   end
 end

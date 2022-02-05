@@ -6,8 +6,7 @@
   <div class="login-card">
     <p class="overline text-center">continue with</p>
     <div class="social--buttons">
-      <%= button_to "GITHUB", "/", class: "button button--secondary" %> 
-      <%= button_to "TWITTER", "/", class: "button button--secondary" %>
+      <%= link_to "GITHUB", "/", class: "button button--secondary full-width" %> 
     </div>
 
     <p class="overline text-center mb-2">or</p>
@@ -48,10 +47,10 @@
         </div>
       </div>
 
-      <div class="text-center">
-        <div class="actions mb-3"><%= f.submit "Sign up", class: "button button--primary full-width" %></div>
-        <p class="content-sm mb-3">Already a member?</p>
-        <%= link_to "Sign In", new_user_session_path, class: "content" %>
+      <div class="text-center flex flex-column gap-4">
+        <%= f.submit "Sign up", class: "button button--primary full-width" %>
+        <p class="content-sm">Already a member?</p>
+        <%= link_to "Sign In", new_user_session_path, class: "primary-500" %>
       </div>
 
       <% end %>
