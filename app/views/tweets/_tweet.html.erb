@@ -19,10 +19,14 @@
     <%= tweet.replied_to_id %>
   </p>
 
-  <% if tweet.liked?(current_user) %>
-    <%= button_to "Like", like_destroy_path(tweet), method: :delete %>
+  <% if user_signed_in? %>
+    <% if tweet.liked?(current_user) %>
+      <%= button_to "Like", like_destroy_path(tweet), method: :delete %>
+    <% else %>
+      <%= button_to "Like", like_path(tweet) %>
+    <% end %>
   <% else %>
-    <%= button_to "Like", like_path(tweet) %>
+    <%= link_to "Like", new_user_session_path %>
   <% end %>
 
 </div>
