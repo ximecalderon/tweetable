@@ -1,16 +1,18 @@
 
   <div id="<%= dom_id tweet %>" class="container__tweet">
     <div class="tweet__content">
-      <div class="tweet__header">
-        <%= image_tag tweet.user.avatar, class: "tweet_avatar" %>
-        <div class="tweet__user">
-          <div>
-            <strong><%= tweet.user.name %></strong>
-            <span class="primary-500">@<%= tweet.user.username %></span>
+      <%= link_to "#" do%>
+        <div class="tweet__header">
+          <%= image_tag tweet.user.avatar, class: "tweet_avatar" %>
+          <div class="tweet__user">
+            <div>
+              <strong><%= tweet.user.name %></strong>
+              <span class="primary-500">@<%= tweet.user.username %></span>
+            </div>
+            <span class="gray content-sm"><%= time_ago_in_words(tweet.created_at) %> ago</span>
           </div>
-          <span class="gray content-sm"><%= time_ago_in_words(tweet.created_at) %> ago</span>
         </div>
-      </div>
+      <% end %>
       <%= link_to tweet do%>
         <%= tweet.body %>
       <% end %>
@@ -28,9 +30,16 @@
               <%= image_tag("icons/reply.svg") %>
               <%= tweet.replies_count %>
           <% end %>
-          <%= link_to "#", class: "flex gap-10 link-filter" do %>
+          <% if tweet.liked?(current_user) %>
+            <%= link_to like_destroy_path(tweet), method: :delete, class: "flex gap-10 link-filter" do %>
+              <%= image_tag("icons/like_true.svg") %>
+              <%= tweet.likes_count %>
+            <% end %>
+          <% else %>
+            <%= link_to like_path(tweet), class: "flex gap-10 link-filter" do %>
               <%= image_tag("icons/like.svg") %>
               <%= tweet.likes_count %>
+            <% end %>
           <% end %>
         </div>
       </div>
