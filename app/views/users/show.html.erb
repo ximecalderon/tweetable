@@ -1,0 +1,15 @@
+<div class="profile">
+  <h1 class="heading heading--sm">Profile</h1>
+  <figure>
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, class: "avatar" %>
+    <% else %>
+      image.xd
+    <% end %>
+  </figure>
+  <p class="heading heading--sm"><%= @user.name %></p>
+  <p>@<%= @user.username %></p>
+  <p class="mb-4">Joined on <%= @user.created_at.strftime("%B %d, %Y") %></p>
+
+  <%= link_to "edit profile", edit_user_registration_path, class: "button button--primary" %>
+</div>
